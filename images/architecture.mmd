@@ -7,7 +7,7 @@ flowchart LR
     Z["Zeek Sensor"]
     WA["Wazuh Agent"]
     A -->|Attack traffic| B
-    A -->|Probes| Z
+    A -->|Probes / Scans| Z
     B -->|Sysmon events| WA
   end
 
@@ -15,17 +15,21 @@ flowchart LR
   subgraph SIEM["SIEM VM (Xubuntu)"]
     direction TB
     note1["Primary NIC: Internal Network"]
-    note2["Secondary NIC: NAT (Internet)"]
+    note2["Secondary NIC: NAT (for updates & Dashboard access)"]
     W["Wazuh Manager"]
-    E["Elastic Stack (Elasticsearch + Kibana)"]
-    W -->|Send alerts| E
+    I["Wazuh Indexer (replaces Elasticsearch)"]
+    D["Wazuh Dashboard (replaces Kibana)"]
+
+    W -->|Send alerts & logs| I
+    I -->|Display & visualization| D
+
     note1 --- W
-    note2 --- E
+    note2 --- D
   end
 
   %% Data flows
-  Z -->|"Zeek logs (conn/http/dns)"| E
-  WA -->|Agent alerts| W
+  Z -->|"Zeek logs (conn/http/dns)"| I
+  WA -->|Agent telemetry| W
 
   %% Internet connectivity
   Internet((Internet))
