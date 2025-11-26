@@ -1,6 +1,5 @@
 # Configuration Notes – Mini SOC Research Testbed
 
-Author: *Lanex – Mini SOC Research Testbed*
 Purpose: Stable, reproducible lab setup for SOC investigation, Wazuh SIEM, Sysmon, and Zeek experiments.
 
 ---
