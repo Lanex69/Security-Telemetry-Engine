@@ -29,7 +29,7 @@ The goal of this project is to develop a reproducible and research-oriented SOC 
 
 Last updated: November 2025  
 
-Next milestone: Deploy Zeek sensor and forward logs via Filebeat to Elastic.
+Next milestone: Deploy Zeek sensor and forward logs via Filebeat to wazuh.
 
 ---
 
