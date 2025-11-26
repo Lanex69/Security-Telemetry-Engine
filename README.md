@@ -23,9 +23,8 @@ The goal of this project is to develop a reproducible and research-oriented SOC 
 |------------|------|--------|
 | Parrot OS | Attacker VM (offensive testing) | Completed |
 | Windows 10 | Victim VM with Sysmon + Wazuh Agent | Completed |
-| Wazuh Manager | Host telemetry analysis and SIEM backend | In progress |
-| Zeek | Network telemetry and log enrichment | Planned |
-| Elastic Stack | Log indexing, search, and dashboards | Planned |
+| Wazuh Manager | Host telemetry analysis and SIEM backend |  Completed |
+| Zeek | Network telemetry and log enrichment |  Completed |
 
 Last updated: November 2025  
 
