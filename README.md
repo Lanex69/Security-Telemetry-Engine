@@ -39,8 +39,18 @@ Next milestone: Deploy Zeek sensor and forward logs via Filebeat to wazuh.
 
 **Network topology**  
 - Internal network (10.0.0.0/24) for telemetry collection  
-- NAT interface for Elastic Stack access and updates  
+- NAT interface for Elastic Stack access and updates
 
+  
+**Update (Nov 18, 2025)**
+
+Wazuh Manager fully deployed using Docker
+
+Wazuh Indexer and Wazuh Dashboard running and stable
+
+Windows 11 Victim successfully enrolled (1 Active Agent)
+
+Host telemetry pipeline completed (Sysmon → Wazuh → Dashboard)
 ---
 
 ## Research Focus Areas
