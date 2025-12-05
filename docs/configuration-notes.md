@@ -299,6 +299,7 @@ CONTAINER ID   IMAGE                          STATUS          PORTS
 867b31134271   wazuh/wazuh-dashboard:4.14.1   Up 24 minutes   443/tcp
 03673ef50b90   wazuh/wazuh-manager:4.14.1     Up 24 minutes   1514-1515/tcp, 55000/tcp
 b9245825bfe3   wazuh/wazuh-indexer:4.14.1     Up 24 minutes   9200/tcp
+```
 ---
 
 # 6. Troubleshooting Notes
