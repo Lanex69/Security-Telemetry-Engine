@@ -238,7 +238,7 @@ Event Viewer → Applications and Services Logs → Microsoft → Windows → Sy
 
 ---
 
-# 5. Future Zeek Configuration Notes
+# 5. Zeek Configuration Notes
 
 ## Zeek Integration Notes
 
