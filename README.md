@@ -46,17 +46,14 @@ The goal of this project is to develop a reproducible and research-oriented SOC 
   
 **Status Update (Nov 2025)**
 
-Attacker VM: Completed
+| Component                     | Status                                      |
+|------------------------------|----------------------------------------------|
+| Attacker VM                  | Completed                                    |
+| Windows 11 Victim            | Completed (Sysmon + Wazuh Agent)             |
+| SIEM (Wazuh Stack via Docker)| Completed                                    |
+| Agent Enrollment             | Successful (1 Active Agent)                  |
+| Zeek Sensor                  | Completed (Network telemetry connected to Wazuh) |
 
-Windows 11 Victim: Completed (Sysmon + Wazuh Agent)
-
-SIEM (Wazuh Stack via Docker): Completed
-
-Agent Enrollment: Successful (1 Active Agent)
-
-Zeek Sensor: Completed (Network telemetry connected to Wazuh)
-
-SIEM / SOC Manager → Completed (Docker Stack Deployed, Host & Network Agents Linked)
 ---
 
 ## Research Focus Areas
