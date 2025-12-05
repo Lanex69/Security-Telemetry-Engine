@@ -56,8 +56,6 @@ Agent Enrollment: Successful (1 Active Agent)
 
 Zeek Sensor: Completed (Network telemetry connected to Wazuh)
 
-Then update the architecture table row for SIEM:
-
 SIEM / SOC Manager → Completed (Docker Stack Deployed, Host & Network Agents Linked)
 ---
 
