@@ -41,7 +41,7 @@ The goal of this project is to develop a reproducible and research-oriented SOC 
 
 **Network topology**  
 - Internal network (10.0.0.0/24) for telemetry collection  
-- NAT interface for Wazuh Dashboard access and updates.
+- NAT interface for pulling Docker updates and accessing the Wazuh Dashboard from the host.
 
   
 **Status Update (Nov 2025)**
@@ -70,7 +70,9 @@ The primary research areas include:
 - True Positive Rate (TPR) and False Positive Rate (FPR)  
 - Detection latency (event to alert time)  
 - Alert volume before and after correlation  
-- Severity and prioritization scores  
+- Severity and prioritization scores
+
+This testbed is designed primarily for controlled academic experiments rather than production SOC deployment.
 
 ---
 
