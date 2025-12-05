@@ -312,31 +312,209 @@ b9245825bfe3   wazuh/wazuh-indexer:4.14.1     Up 24 minutes   9200/tcp
 
 # 6. Troubleshooting Notes
 
-### Dashboard Not Loading
+# Troubleshooting Notes
 
-* Certificates missing → regenerate.
+Collected below are all the major issues encountered while building the Mini SOC Research Testbed, along with their root causes and fixes. These notes exist to make replication easier and to preserve the real-world debugging process behind the project.
 
-### Wazuh Failing to Start
+---
 
-* Wrong version.
-* Bad cert permissions.
+## SIEM / Wazuh Manager Issues
 
-### Docker Containers Not Starting
+### **1. Boot Freeze / Kernel Panic (rcu_preempt detected expedited stalls)**
 
-* Ensure version pinned.
-* Ensure memory available.
+**Symptom:** SIEM VM hangs at boot with CPU stall errors.
 
-### Agent Enrollment Errors
+**Root Cause:** VM had only **1 vCPU** assigned. The Docker Wazuh Stack is heavy and starved the kernel during startup.
 
-* API enrollment unreliable; use interactive mode.
+**Fix:** Increased VM specs to **2 vCPUs** and **4GB+ RAM** in VirtualBox.
 
-### Time Sync Issues
+---
 
-* Ensure all VMs use same timezone.
+### **2. Wazuh Dashboard Not Loading (TLS/SSL Issue)**
 
-### Host-Only Network Not Appearing
+**Symptom:** Dashboard refused to open even though containers were running.
 
-* Recreate VirtualBox host-only adapter.
+**Cause:** Missing or incorrectly generated certificates.
+
+**Fix:**
+
+* Removed old certs.
+* Re-ran certificate script:
+
+  ```bash
+  sudo ./generate-indexer-certs.sh
+  ```
+* Restarted the stack:
+
+  ```bash
+  sudo docker compose down
+  sudo docker compose up -d
+  ```
+
+---
+
+### **3. Wazuh Agent Connection Refused (Port 1514)**
+
+**Symptom:** Windows Victim could not connect to Manager. `Test-NetConnection` and `nc -vz` failed.
+
+**Fix:**
+
+* Verified containers with `docker ps`.
+* Allowed ports in firewall:
+
+  ```bash
+  sudo ufw allow 1514/tcp
+  ```
+* Restarted Windows service:
+
+  ```powershell
+  Restart-Service WazuhSvc
+  ```
+
+---
+
+### **4. Windows Agent Not Enrolling (API Method Failed)**
+
+**Cause:** API enrollment kept failing without meaningful errors.
+
+**Fix:** Used **interactive enrollment** inside the manager container:
+
+```bash
+docker exec -it wazuh.manager /var/ossec/bin/manage_agents
+```
+
+Steps:
+
+1. Add agent
+2. Name: `WIN11-VICTIM`
+3. IP: `10.0.3.10`
+4. Extract key
+
+Windows side:
+
+```powershell
+manage_agent.exe -i <key>
+net start wazuh
+```
+
+---
+
+### **5. Agent Installed but Not Showing as Active**
+
+**Cause:** Service not running or wrong manager IP.
+
+**Fix:**
+
+```powershell
+net stop wazuh
+net start wazuh
+```
+
+Verified manager IP in: `C:\Program Files (x86)\ossec-agent\ossec.conf`
+
+---
+
+## Zeek & Filebeat (Network Signal) Issues
+
+### **6. Filebeat Crash Loop (pthread_create failed: Operation not permitted)**
+
+**Symptom:** Filebeat immediately dies on startup.
+
+**Root Cause:** Seccomp security filter blocking modern Linux syscalls (e.g., `rseq`).
+
+**Fix (filebeat.yml):**
+
+```yaml
+seccomp:
+  default_action: allow
+```
+
+---
+
+### **7. Corrupted Filebeat Registry**
+
+**Symptom:** Filebeat runs but sends no data; registry errors appear.
+
+**Cause:** Switching between filestream and log input types corrupted Filebeat's internal registry.
+
+**Fix:**
+
+```bash
+sudo systemctl stop filebeat
+sudo rm -rf /var/lib/filebeat
+sudo systemctl start filebeat
+```
+
+---
+
+### **8. Zeek Not Generating Logs**
+
+**Symptom:** Only `conn.log` appears; no HTTP/SSL logs.
+
+**Cause:** Local curl traffic on Zeek VM bypasses interface capture; checksum offloading caused Zeek to drop packets.
+
+**Fix:** Tested with actual external traffic from Windows Victim—Zeek parsed correctly.
+
+Also verified interface + service:
+
+```bash
+ip a
+zeekctl status
+zeekctl deploy
+```
+
+---
+
+## Network & Connectivity Issues
+
+### **9. Parrot VM No Internet (NAT Misconfiguration)**
+
+**Symptom:** No internet; IP stuck on `10.0.0.5` instead of DHCP `10.0.2.15`.
+
+**Cause:** Static IP settings interfering with NAT.
+
+**Fix:**
+
+* Set IPv4 method to DHCP.
+* Removed leftover static entries.
+* Restarted network.
+
+---
+
+### **10. Missing Zeek Application Logs (http.log, ssl.log)**
+
+**Symptom:** Only connection logs appeared.
+
+**Cause:** Zeek cannot parse traffic generated locally; needed real cross-VM traffic.
+
+**Fix:** Generated traffic from Windows → Zeek VM and logs appeared as expected.
+
+---
+
+### **11. Network Interface Misconfiguration (Static IP Not Applying)**
+
+**Cause:** Wrong interface names used in Netplan.
+
+**Fix:**
+
+* Identified correct interfaces (`enp0s3`, `enp0s8`).
+* Updated YAML.
+* Applied:
+
+  ```bash
+  sudo netplan apply
+  ```
+
+---
+
+### **12. No Connection Between VMs**
+
+**Cause:** VMs placed on different VirtualBox networks.
+
+**Fix:** All lab VMs must be on the **same Internal Network** (e.g., `MiniSOCNet`).
+
+---
+
 
 ---
 
