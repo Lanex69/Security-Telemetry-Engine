@@ -22,20 +22,26 @@ The goal of this project is to develop a reproducible and research-oriented SOC 
 | Component | Role | Status |
 |------------|------|--------|
 | Parrot OS | Attacker VM (offensive testing) | Completed |
-| Windows 10 | Victim VM with Sysmon + Wazuh Agent | Completed |
-| Wazuh Manager | Host telemetry analysis and SIEM backend |  Completed |
+| Windows 11 | Victim VM with Sysmon + Wazuh Agent | Completed |
+| Wazuh Manager | Docker Stack Deployed, Host & Network Agents Linked |  Completed |
 | Zeek | Network telemetry and log enrichment |  Completed |
 
 
 ---
 
-## Architecture Overview
+### Active Agent in Wazuh Dashboard
+![Active Agent](images/wazuh-active-agent.png)
 
-![SOC Architecture Diagram](images/architecture.png)
+### Zeek Sensor Working
+![Zeek Logs](images/working_zeek.jpg)
+
+### Architecture Diagram
+![Architecture](images/architecture.png)
+
 
 **Network topology**  
 - Internal network (10.0.0.0/24) for telemetry collection  
-- NAT interface for Elastic Stack access and updates
+- NAT interface for Wazuh Dashboard access and updates.
 
   
 **Status Update (Nov 2025)**
@@ -90,10 +96,11 @@ Detailed steps, logs, and detection artifacts are documented under the [attacks/
 
 | Metric | Before Correlation | After Correlation | Observation |
 |---------|--------------------|-------------------|--------------|
-| Average Alerts | 214 | 96 | Approximately 55% reduction |
-| False Positives | 48% | 23% | Improved fidelity |
-| Detection Latency | 4.8 seconds | 2.2 seconds | Faster correlation and alert generation |
+| Average Alerts | - | - | - |
+| False Positives | - | - | - |
+| Detection Latency | - | - | - |
 
+Results section will be updated after experiments begin.
 Quantitative data will be updated after each experiment.
 
 ---
