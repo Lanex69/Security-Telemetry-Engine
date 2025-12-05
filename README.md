@@ -33,7 +33,7 @@ The goal of this project is to develop a reproducible and research-oriented SOC 
 ![Active Agent](images/wazuh-active-agent.png)
 
 ### Zeek Sensor Working
-![Zeek Logs](images/working-zeek.jpg)
+![Zeek Logs](images/working-zeek-logs.jpg)
 
 ### Architecture Diagram
 ![Architecture](images/architecture.png)
