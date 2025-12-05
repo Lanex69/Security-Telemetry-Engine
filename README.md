@@ -41,15 +41,21 @@ Next milestone: Deploy Zeek sensor and forward logs via Filebeat to wazuh.
 - NAT interface for Elastic Stack access and updates
 
   
-**Update (Nov 18, 2025)**
+**Status Update (Nov 2025)**
 
-Wazuh Manager fully deployed using Docker
+Attacker VM: Completed
 
-Wazuh Indexer and Wazuh Dashboard running and stable
+Windows 11 Victim: Completed (Sysmon + Wazuh Agent)
 
-Windows 11 Victim successfully enrolled (1 Active Agent)
+SIEM (Wazuh Stack via Docker): Completed
 
-Host telemetry pipeline completed (Sysmon → Wazuh → Dashboard)
+Agent Enrollment: Successful (1 Active Agent)
+
+Zeek Sensor: Completed (Network telemetry connected to Wazuh)
+
+Then update the architecture table row for SIEM:
+
+SIEM / SOC Manager → Completed (Docker Stack Deployed, Host & Network Agents Linked)
 ---
 
 ## Research Focus Areas
