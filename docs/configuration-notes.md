@@ -300,6 +300,14 @@ CONTAINER ID   IMAGE                          STATUS          PORTS
 03673ef50b90   wazuh/wazuh-manager:4.14.1     Up 24 minutes   1514-1515/tcp, 55000/tcp
 b9245825bfe3   wazuh/wazuh-indexer:4.14.1     Up 24 minutes   9200/tcp
 ```
+
+
+<img width="1024" height="518" alt="image" src="https://github.com/user-attachments/assets/955f2e9f-766d-4abb-9e16-a9c8ad27efc7" />
+
+<img width="1920" height="891" alt="image" src="https://github.com/user-attachments/assets/146d2791-914b-4523-ad47-e370131bcb51" />
+
+
+
 ---
 
 # 6. Troubleshooting Notes
