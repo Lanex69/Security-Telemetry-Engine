@@ -240,24 +240,65 @@ Event Viewer → Applications and Services Logs → Microsoft → Windows → Sy
 
 # 5. Future Zeek Configuration Notes
 
-## (Placeholder Section)
+## Zeek Integration Notes
 
-### Installation Steps
+### Installation & Configuration
+* **Installation Method:** Official Zeek Binary Repository (OpenSUSE Build Service) for Ubuntu 22.04 LTS.
+* **Network Interface:** `enp0s3` (Configured in `node.cfg` as `standalone` mode).
+* **Capabilities:** `cap_net_raw` granted to Zeek binary to allow promiscuous mode capture without root.
 
-*To be added.*
+### Log Path & Ingestion
+* **Log Export Path:** `/opt/zeek/logs/current/` (JSON format enabled).
+* **Ingestion Pipeline:**
+    * **Source:** Zeek JSON logs (`conn.log`, `http.log`, `dns.log`, etc.).
+    * **Shipper:** Filebeat (installed on Zeek Sensor VM).
+    * **Output:** Direct to Wazuh Indexer (Elasticsearch protocol) via **HTTPS**.
+    * **Index Pattern:** `filebeat-*` created in Wazuh Dashboard.
 
-### NIC Monitoring Mode
+### Useful Commands
+* **Check Zeek Status:**
+    ```bash
+    sudo /opt/zeek/bin/zeekctl status
+    ```
+* **Verify Live Traffic:**
+    ```bash
+    tail -F /opt/zeek/logs/current/conn.log
+    ```
+* **Test Filebeat Output:**
+    ```bash
+    sudo filebeat test output
+    ```
 
-*To be added.*
+---
 
-### Exporting Logs to Wazuh
+## Final Working Ports & Services
 
-*To be added.*
+### SIEM VM (10.0.3.5)
+| Service | Port | Protocol | Purpose |
+| :--- | :--- | :--- | :--- |
+| **Wazuh Agent Connection** | 1514 | TCP | Encrypted log shipping from Windows Victim. |
+| **Wazuh Enrollment** | 1515 | TCP | Agent registration service. |
+| **Wazuh API** | 55000 | TCP | API for management/dashboard interaction. |
+| **Wazuh Indexer (API)** | 9200 | TCP/HTTPS | Ingestion port for Filebeat (Zeek logs). |
+| **Wazuh Indexer (Cluster)**| 9300 | TCP | Inter-node communication (Internal). |
+| **Wazuh Dashboard** | 443 | TCP/HTTPS | Web User Interface. |
 
-### Validating Zeek Data Flow
+### Zeek Sensor (10.0.3.20)
+* **SSH:** 22 (Management).
+* **Promiscuous Mode:** Enabled on `enp0s3` for passive sniffing.
 
-*To be added.*
+---
 
+## Verification Steps
+
+### 1. Service Health Check (SIEM VM)
+Run `docker ps` to confirm the stack is active:
+
+```bash
+CONTAINER ID   IMAGE                          STATUS          PORTS
+867b31134271   wazuh/wazuh-dashboard:4.14.1   Up 24 minutes   443/tcp
+03673ef50b90   wazuh/wazuh-manager:4.14.1     Up 24 minutes   1514-1515/tcp, 55000/tcp
+b9245825bfe3   wazuh/wazuh-indexer:4.14.1     Up 24 minutes   9200/tcp
 ---
 
 # 6. Troubleshooting Notes
