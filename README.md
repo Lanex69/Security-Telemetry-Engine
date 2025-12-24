@@ -14,7 +14,7 @@ The goal of this project is to develop a reproducible and research-oriented SOC 
 - Detect and correlate multi-stage attacks  
 - Measure alert noise and evaluate prioritization methods  
 - Explore improvements in detection accuracy and analyst efficiency  
-
+- produce better correlation
 ---
 
 ## Current Lab Architecture
