@@ -1,6 +1,6 @@
 # Mini SOC Research Testbed
 
-**Security Telemetry Engine** is a reproducible SOC testbed designed to generate, correlate, and analyze attack telemetry.  
+**Cross-Layer Host–Network Telemetry** Correlation for Improved Intrusion Detection in Modern SOC Architectures.  
 It integrates Zeek and the Wazuh Stack (Manager, Indexer, Dashboard) to analyze telemetry and measure alert noise reduction. 
 A custom Python-based web-pentest toolkit is used to simulate realistic attack traffic and generate diverse telemetry.
 
