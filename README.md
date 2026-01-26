@@ -4,6 +4,8 @@
 It integrates Zeek and the Wazuh Stack (Manager, Indexer, Dashboard) to analyze telemetry and measure alert noise reduction. 
 A custom Python-based web-pentest toolkit is used to simulate realistic attack traffic and generate diverse telemetry.
 
+![Status](https://img.shields.io/badge/status-research--ready-blue)  ![SOC](https://img.shields.io/badge/domain-SOC-success) ![Telemetry](https://img.shields.io/badge/focus-telemetry--correlation-orange) ![Zeek](https://img.shields.io/badge/network-Zeek-9cf) ![Wazuh](https://img.shields.io/badge/SIEM-Wazuh-purple) ![License](https://img.shields.io/badge/license-MIT-green) [![Wazuh](https://img.shields.io/badge/SIEM-Wazuh-purple)](https://wazuh.com)
+
 ---
 
 ## Objective
