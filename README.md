@@ -111,7 +111,7 @@ https://github.com/Lanex69/vulnerability-scanner
 
 ## Documentation and Reports
 
-- [Research Summary(PDF)](docs/research-summary.pdf)  
+- [Research Summary(PDF)](docs/Research-Summary.pdf)  
 - [Ethics Statement](ETHICS.md)  
 - [Architecture Diagram v2](images/architecture.png)  
 - Blog Series – Part 1: Building the Mini SOC  
