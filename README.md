@@ -1,4 +1,4 @@
-# Mini SOC Research Testbed
+# SOC Research Testbed
 
 **Cross-Layer Host–Network Telemetry** Correlation for Improved Intrusion Detection in Modern SOC Architectures.  
 It integrates Zeek and the Wazuh Stack (Manager, Indexer, Dashboard) to analyze telemetry and measure alert noise reduction. 
