@@ -1,8 +1,12 @@
 # SOC Research Testbed
 
-**Cross-Layer Host–Network Telemetry** Correlation for Improved Intrusion Detection in Modern SOC Architectures.  
-It integrates Zeek and the Wazuh Stack (Manager, Indexer, Dashboard) to analyze telemetry and measure alert noise reduction. 
-A custom Python-based web-pentest toolkit is used to simulate realistic attack traffic and generate diverse telemetry.
+Cross-Layer Host–Network Telemetry Correlation for Improved Intrusion Detection in Modern SOC Architectures.
+
+This research empirically evaluates the operational impact of correlating network telemetry from Zeek with host-level telemetry from the Wazuh stack (Wazuh Manager, Indexer, Dashboard, and Sysmon agent) within a reproducible SOC testbed.
+
+Rather than proposing new detection algorithms, the study measures how SIEM-level cross-layer correlation affects alert noise, detection accuracy (TPR/FPR), and detection latency compared to host-only and network-only monitoring approaches.
+
+Controlled, multi-stage attack scenarios are executed using a custom Python-based testing toolkit to generate realistic and reproducible telemetry across both host and network layers.
 
 ![Status](https://img.shields.io/badge/status-research--ready-blue)  ![SOC](https://img.shields.io/badge/domain-SOC-success) ![Telemetry](https://img.shields.io/badge/focus-telemetry--correlation-orange) ![Zeek](https://img.shields.io/badge/network-Zeek-9cf)  ![License](https://img.shields.io/badge/license-MIT-green) [![Wazuh](https://img.shields.io/badge/SIEM-Wazuh-purple)](https://wazuh.com)
 
