@@ -1,12 +1,12 @@
 # SOC Research Testbed
 
-Cross-Layer Host–Network Telemetry Correlation for Improved Intrusion Detection in Modern SOC Architectures.
+Operational Impact of Cross-Layer Telemetry Correlation on Intrusion Detection in Modern SOC Architectures
 
-This research empirically evaluates the operational impact of correlating network telemetry from Zeek with host-level telemetry from the Wazuh stack (Wazuh Manager, Indexer, Dashboard, and Sysmon agent) within a reproducible SOC testbed.
+This research conducts a controlled systems-level evaluation of SIEM-level cross-layer telemetry correlation within a reproducible SOC testbed. The study isolates correlation logic as the independent architectural variable while holding detection tooling constant (Zeek for network telemetry and the Wazuh stack with Sysmon for host telemetry).
 
-Rather than proposing new detection algorithms, the study measures how SIEM-level cross-layer correlation affects alert noise, detection accuracy (TPR/FPR), and detection latency compared to host-only and network-only monitoring approaches.
+Rather than proposing new detection algorithms, the research quantitatively measures how correlating host and network telemetry impacts alert consolidation, detection accuracy (TPR/FPR), and detection latency compared to host-only and network-only monitoring configurations.
 
-Controlled, multi-stage attack scenarios are executed using a custom Python-based testing toolkit to generate realistic and reproducible telemetry across both host and network layers.
+Structured, repeatable multi-stage attack scenarios are executed in an isolated environment with formally recorded ground truth timestamps. The study further evaluates sensitivity to correlation time windows (Δt) and controlled operational stress conditions to characterize architectural trade-offs in detection performance.
 
 ![Status](https://img.shields.io/badge/status-research--ready-blue)  ![SOC](https://img.shields.io/badge/domain-SOC-success) ![Telemetry](https://img.shields.io/badge/focus-telemetry--correlation-orange) ![Zeek](https://img.shields.io/badge/network-Zeek-9cf)  ![License](https://img.shields.io/badge/license-MIT-green) [![Wazuh](https://img.shields.io/badge/SIEM-Wazuh-purple)](https://wazuh.com)
 
