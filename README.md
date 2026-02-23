@@ -12,14 +12,27 @@ Structured, repeatable multi-stage attack scenarios are executed in an isolated 
 
 ---
 
-## Objective
+## Research Objectives
 
-The goal of this project is to develop a reproducible and research-oriented SOC testbed that can:
+The study aims to:
 
-- Generate and analyze realistic attack telemetry  
-- Detect and correlate multi-stage attacks  
-- Measure alert noise and evaluate prioritization methods  
-- Explore improvements in detection accuracy and analyst efficiency  
+- Compare detection performance across three configurations:
+
+  - Host-only detection
+
+  - Network-only detection
+
+  - Cross-layer correlated detection
+
+- Quantify alert noise reduction using a formal Alert Consolidation Ratio (CR)
+
+- Measure detection latency under each configuration
+
+- Evaluate sensitivity to the correlation time window (Δt)
+
+- Assess robustness under controlled operational stress (partial log loss)
+
+- Demonstrate a reproducible experimental methodology for SOC architectural evaluation
 
 ---
 
@@ -64,32 +77,39 @@ The goal of this project is to develop a reproducible and research-oriented SOC 
 
 ## Research Focus Areas
 
-This project investigates how multi-source telemetry correlation can improve detection fidelity and reduce SOC analyst workload.  
-The primary research areas include:
+The goal of this project is to design and evaluate a reproducible, systems-level SOC testbed that enables controlled measurement of SIEM-level cross-layer telemetry correlation.
 
-- Correlation between host and network telemetry  
-- Reducing false positives in SOC environments  
-- Measuring detection latency and alert volume reduction  
+Specifically, the testbed is used to:
 
-**Planned evaluation metrics**
+- Compare host-only, network-only, and cross-layer correlated detection configurations
 
-- True Positive Rate (TPR) and False Positive Rate (FPR)  
-- Detection latency (event to alert time)  
-- Alert volume before and after correlation  
-- Severity and prioritization scores
+- Quantify alert consolidation using a formal Alert Consolidation Ratio (CR)
 
-This testbed is designed primarily for controlled academic experiments rather than production SOC deployment.
+- Measure detection performance (TPR/FPR) and detection latency under each configuration
+
+- Analyze sensitivity to correlation time windows (Δt)
+
+- Evaluate correlation robustness under controlled operational stress conditions
+
+- The project focuses on empirically characterizing architectural trade-offs in SOC detection performance rather than developing new detection algorithms.
+
+- This testbed is designed primarily for controlled academic experiments rather than production SOC deployment.
 
 ---
 
 ## Attack Scenarios
 
-| Attack | Description | Status | Detection |
-|---------|--------------|---------|-----------|
-| SSH Brute Force | Hydra-based SSH brute force | Planned | Pending|
-| Directory Fuzzing | Gobuster-based web enumeration | In progress | Pending |
-| DNS Tunneling | Data exfiltration via nslookup or iodine | Planned | Pending |
-| Privilege Escalation | PowerShell-based local privilege escalation | Planned | Pending |
+Experiments include structured and repeatable intrusion scenarios:
+
+  - Reconnaissance and authentication brute-force activity
+
+  - Multi-stage attack chain involving privilege escalation and lateral movement
+
+  - Living-off-the-land (LOTL) activity using native system tools (e.g., PowerShell abuse, scheduled tasks)
+
+Each scenario is executed multiple times under identical conditions to enable comparative measurement.
+
+Ground truth timestamps are recorded at the attacker system to formally validate detection timing and classification.
 
 Detailed steps, logs, and detection artifacts are documented under the [attacks/](attacks/) directory.
 
