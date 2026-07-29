@@ -17,7 +17,7 @@ Lords Institute of Engineering and Technology
 
 ---
 
-## 📄 Research Paper
+##  Research Paper
 
 This repository accompanies the research paper:
 
@@ -35,7 +35,7 @@ Unlike traditional IDS research, this work does **not** introduce a new detectio
 
 ---
 
-# 🏗 Architecture
+#  Architecture
 
 <p align="center">
 <img src="images/architecture.png" width="900">
@@ -52,7 +52,7 @@ The experimental environment consists of:
 
 ---
 
-# 📊 Key Experimental Results
+#  Key Experimental Results
 
 | Metric | Result |
 |---------|--------|
@@ -65,7 +65,7 @@ The experimental environment consists of:
 
 ---
 
-# 📂 Repository Structure
+#  Repository Structure
 
 | Path | Description |
 |------|-------------|
@@ -78,7 +78,7 @@ The experimental environment consists of:
 
 ---
 
-# 🔬 Research Objectives
+#  Research Objectives
 
 This work experimentally evaluates:
 
@@ -94,7 +94,7 @@ This work experimentally evaluates:
 
 ---
 
-# 💻 Testbed Status
+#  Testbed Status
 
 | Component | Status |
 |-----------|--------|
@@ -110,7 +110,7 @@ This work experimentally evaluates:
 
 ---
 
-# 📸 Screenshots
+#  Screenshots
 
 ## Wazuh Dashboard
 
@@ -128,14 +128,14 @@ This work experimentally evaluates:
 
 ---
 
-# 📚 Documentation
+#  Documentation
 
-- 📄 Research Paper
-- 📑 One-page Research Summary
-- 📝 Ethics Statement
-- 🏗 Architecture Diagram
-- 📖 Medium Blog
-- ✍️ Substack Blog
+-  Research Paper
+-  One-page Research Summary
+-  Ethics Statement
+-  Architecture Diagram
+-  Medium Blog
+-  Substack Blog
 
 ---
 
@@ -151,7 +151,7 @@ This work experimentally evaluates:
 
 ---
 
-# 🎯 Intended Audience
+#  Intended Audience
 
 This repository is designed for:
 
@@ -161,23 +161,14 @@ This repository is designed for:
 - Graduate and undergraduate students
 - Reviewers evaluating reproducibility
 
----
 
-# 📖 Related Project
-
-**Web Pentest Toolkit**
-
-https://github.com/Lanex69/vulnerability-scanner
-
----
-
-# 📜 License
+#  License
 
 Released under the MIT License.
 
 ---
 
-## ⭐ Citation
+##  Citation
 
 If you use this repository in your research, please cite the accompanying paper.
 
