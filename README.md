@@ -69,8 +69,6 @@ The experimental environment consists of:
 
 | Path | Description |
 |------|-------------|
-| attacks/ | Attack scripts and execution workflow |
-| detections/ | Detection rules and correlation artifacts |
 | docs/ | Research summary and documentation |
 | images/ | Architecture diagrams, screenshots and figures |
 | scripts/ | Automation and experiment scripts |
@@ -139,7 +137,7 @@ This work experimentally evaluates:
 
 ---
 
-# 📈 Experimental Workflow
+#  Experimental Workflow
 
 1. Deploy reproducible SOC environment
 2. Generate controlled attack scenarios
