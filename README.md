@@ -45,10 +45,10 @@ The experimental environment consists of:
 
 | Component | Purpose |
 |-----------|---------|
-| 🐧 Parrot Security | Attack generation |
-| 🪟 Windows 11 + Sysmon | Host telemetry |
-| 🔍 Zeek Sensor | Network telemetry |
-| 🛡 Wazuh Stack | SIEM, indexing and visualization |
+| Parrot Security | Attack generation |
+| Windows 11 + Sysmon | Host telemetry |
+| Zeek Sensor | Network telemetry |
+| Wazuh Stack | SIEM, indexing and visualization |
 
 ---
 
