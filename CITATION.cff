@@ -1,1 +1,32 @@
+cff-version: 1.2.0
+title: "Security Telemetry Engine"
+message: "If you use this repository in your research, please cite it as follows."
+type: software
 
+authors:
+  - family-names: Ahmed
+    given-names: Syed Ahsan
+
+repository-code: "https://github.com/Lanex69/Security-Telemetry-Engine"
+
+url: "https://github.com/Lanex69/Security-Telemetry-Engine"
+
+license: MIT
+
+keywords:
+  - cybersecurity
+  - SIEM
+  - Wazuh
+  - Zeek
+  - Sysmon
+  - telemetry
+  - intrusion detection
+  - SOC
+  - reproducible research
+
+abstract: >
+  Companion repository for the paper
+  "Evaluating Cross-Layer Host–Network Telemetry Correlation
+  in a Reproducible SOC Testbed".
+  Includes experimental artifacts, scripts, figures,
+  and reproducibility resources.
