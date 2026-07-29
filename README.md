@@ -108,24 +108,6 @@ This work experimentally evaluates:
 
 ---
 
-#  Screenshots
-
-## Wazuh Dashboard
-
-<p align="center">
-<img src="images/wazuh-active-agent.png" width="850">
-</p>
-
----
-
-## Zeek Telemetry
-
-<p align="center">
-<img src="images/working-zeek-logs.jpg" width="850">
-</p>
-
----
-
 #  Documentation
 
 -  Research Paper
