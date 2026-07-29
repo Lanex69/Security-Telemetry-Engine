@@ -33,8 +33,8 @@ Unlike traditional IDS research, this work does **not** introduce a new detectio
 - Correlation window sensitivity
 - Framework robustness under telemetry degradation
   
- One-Page Research Summary
- For a quick overview, reviewers and professors can read the concise 1-page summary:
+  One-Page Research Summary
+  For a quick overview, reviewers and professors can read the concise 1-page summary:
 - **[Download Research Summary (PDF)](docs/Research-Summary.pdf)**
 
 
