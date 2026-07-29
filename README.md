@@ -1,158 +1,190 @@
-# SOC Research Testbed
+# Security Telemetry Engine
 
-Operational Impact of Cross-Layer Telemetry Correlation on Intrusion Detection in Modern SOC Architectures
+## Evaluating Cross-Layer Host–Network Telemetry Correlation in a Reproducible SOC Testbed
 
-This research conducts a controlled systems-level evaluation of SIEM-level cross-layer telemetry correlation within a reproducible SOC testbed. The study isolates correlation logic as the independent architectural variable while holding detection tooling constant (Zeek for network telemetry and the Wazuh stack with Sysmon for host telemetry).
+**Author:** Syed Ahsan Ahmed  
+Department of Computer Science Engineering  
+Lords Institute of Engineering and Technology
 
-Rather than proposing new detection algorithms, the research quantitatively measures how correlating host and network telemetry impacts alert consolidation, detection accuracy (TPR/FPR), and detection latency compared to host-only and network-only monitoring configurations.
-
-Structured, repeatable multi-stage attack scenarios are executed in an isolated environment with formally recorded ground truth timestamps. The study further evaluates sensitivity to correlation time windows (Δt) and controlled operational stress conditions to characterize architectural trade-offs in detection performance.
-
-![Status](https://img.shields.io/badge/status-research--ready-blue)  ![SOC](https://img.shields.io/badge/domain-SOC-success) ![Telemetry](https://img.shields.io/badge/focus-telemetry--correlation-orange) ![Zeek](https://img.shields.io/badge/network-Zeek-9cf)  ![License](https://img.shields.io/badge/license-MIT-green) [![Wazuh](https://img.shields.io/badge/SIEM-Wazuh-purple)](https://wazuh.com)
-
----
-
-## Research Objectives
-
-The study aims to:
-
-- Compare detection performance across three configurations:
-
-  - Host-only detection
-
-  - Network-only detection
-
-  - Cross-layer correlated detection
-
-- Quantify alert noise reduction using a formal Alert Consolidation Ratio (CR)
-
-- Measure detection latency under each configuration
-
-- Evaluate sensitivity to the correlation time window (Δt)
-
-- Assess robustness under controlled operational stress (partial log loss)
-
-- Demonstrate a reproducible experimental methodology for SOC architectural evaluation
+![Status](https://img.shields.io/badge/status-research--ready-blue)
+![Research](https://img.shields.io/badge/type-research-success)
+![SOC](https://img.shields.io/badge/domain-SOC-2ea44f)
+![Wazuh](https://img.shields.io/badge/SIEM-Wazuh-7A3EFF)
+![Zeek](https://img.shields.io/badge/network-Zeek-1E90FF)
+![Sysmon](https://img.shields.io/badge/host-Sysmon-red)
+![Docker](https://img.shields.io/badge/deployment-Docker-2496ED)
+![License](https://img.shields.io/badge/license-MIT-brightgreen)
 
 ---
 
-## Current Lab Architecture
+## 📄 Research Paper
 
-| Component | Role | Status |
-|------------|------|--------|
-| Parrot OS | Attacker VM (offensive testing) | Completed |
-| Windows 11 | Victim VM with Sysmon + Wazuh Agent | Completed |
-| Wazuh Manager | Docker Stack Deployed, Host & Network Agents Linked |  Completed |
-| Zeek | Network telemetry and log enrichment |  Completed |
+This repository accompanies the research paper:
 
+> **Evaluating Cross-Layer Host–Network Telemetry Correlation in a Reproducible SOC Testbed**
 
----
+The project presents a controlled empirical evaluation of SIEM-level host–network telemetry correlation using a reproducible Security Operations Center (SOC) testbed built with **Wazuh**, **Sysmon**, and **Zeek**.
 
-### Active Agent in Wazuh Dashboard
-![Active Agent](images/wazuh-active-agent.png)
+Unlike traditional IDS research, this work does **not** introduce a new detection algorithm. Instead, it isolates **cross-layer telemetry correlation** as the independent architectural variable and evaluates its operational impact on:
 
-### Zeek Sensor Working
-![Zeek Logs](images/working-zeek-logs.jpg)
-
-### Architecture Diagram
-![Architecture](images/architecture.png)
-
-
-**Network topology**  
-- Internal network (10.0.0.0/24) for telemetry collection  
-- NAT interface for pulling Docker updates and accessing the Wazuh Dashboard from the host.
-
-  
-**Status Update (Nov 2025)**
-
-| Component                     | Status                                      |
-|------------------------------|----------------------------------------------|
-| Attacker VM                  | Completed                                    |
-| Windows 11 Victim            | Completed (Sysmon + Wazuh Agent)             |
-| SIEM (Wazuh Stack via Docker)| Completed                                    |
-| Agent Enrollment             | Successful (1 Active Agent)                  |
-| Zeek Sensor                  | Completed (Network telemetry connected to Wazuh) |
+- Detection performance
+- Detection latency
+- Alert consolidation
+- Correlation window sensitivity
+- Framework robustness under telemetry degradation
 
 ---
 
-## Research Focus Areas
+# 🏗 Architecture
 
-The goal of this project is to design and evaluate a reproducible, systems-level SOC testbed that enables controlled measurement of SIEM-level cross-layer telemetry correlation.
+<p align="center">
+<img src="images/architecture.png" width="900">
+</p>
 
-Specifically, the testbed is used to:
+The experimental environment consists of:
 
-- Compare host-only, network-only, and cross-layer correlated detection configurations
-
-- Quantify alert consolidation using a formal Alert Consolidation Ratio (CR)
-
-- Measure detection performance (TPR/FPR) and detection latency under each configuration
-
-- Analyze sensitivity to correlation time windows (Δt)
-
-- Evaluate correlation robustness under controlled operational stress conditions
-
-- The project focuses on empirically characterizing architectural trade-offs in SOC detection performance rather than developing new detection algorithms.
-
-- This testbed is designed primarily for controlled academic experiments rather than production SOC deployment.
+| Component | Purpose |
+|-----------|---------|
+| 🐧 Parrot Security | Attack generation |
+| 🪟 Windows 11 + Sysmon | Host telemetry |
+| 🔍 Zeek Sensor | Network telemetry |
+| 🛡 Wazuh Stack | SIEM, indexing and visualization |
 
 ---
 
-## Attack Scenarios
+# 📊 Key Experimental Results
 
-Experiments include structured and repeatable intrusion scenarios:
-
-  - Reconnaissance and authentication brute-force activity
-
-  - Multi-stage attack chain involving privilege escalation and lateral movement
-
-  - Living-off-the-land (LOTL) activity using native system tools (e.g., PowerShell abuse, scheduled tasks)
-
-Each scenario is executed multiple times under identical conditions to enable comparative measurement.
-
-Ground truth timestamps are recorded at the attacker system to formally validate detection timing and classification.
-
-Detailed steps, logs, and detection artifacts are documented under the [attacks/](attacks/) directory.
+| Metric | Result |
+|---------|--------|
+| Raw Telemetry | **53 Events** |
+| Correlated Incidents | **4** |
+| Alert Consolidation Ratio | **92.45%** |
+| True Positive Rate | **100%** |
+| Detection Configurations | Host • Network • Cross-layer |
+| Correlation Windows | 10 s • 30 s • 60 s |
 
 ---
 
-## Preliminary Results (Work in Progress)
+# 📂 Repository Structure
 
-| Metric | Before Correlation | After Correlation | Observation |
-|---------|--------------------|-------------------|--------------|
-| Average Alerts | - | - | - |
-| False Positives | - | - | - |
-| Detection Latency | - | - | - |
-
-Results section will be updated after experiments begin.
-Quantitative data will be updated after each experiment.
+| Path | Description |
+|------|-------------|
+| attacks/ | Attack scripts and execution workflow |
+| detections/ | Detection rules and correlation artifacts |
+| docs/ | Research summary and documentation |
+| images/ | Architecture diagrams, screenshots and figures |
+| scripts/ | Automation and experiment scripts |
+| README.md | Project overview |
 
 ---
 
-## Related Work
+# 🔬 Research Objectives
 
-**Web-Pentest Toolkit (Attack Generator)**  
+This work experimentally evaluates:
+
+- Host-only detection
+- Network-only detection
+- Cross-layer correlated detection
+- Detection latency
+- Alert Consolidation Ratio (CR)
+- True Positive Rate (TPR)
+- False Positive Rate (FPR)
+- Correlation window sensitivity (Δt)
+- Robustness under partial telemetry loss
+
+---
+
+# 💻 Testbed Status
+
+| Component | Status |
+|-----------|--------|
+| Parrot Attacker | ✅ |
+| Windows 11 + Sysmon | ✅ |
+| Wazuh Docker Stack | ✅ |
+| Zeek Sensor | ✅ |
+| Host Telemetry | ✅ |
+| Network Telemetry | ✅ |
+| Correlation Framework | ✅ |
+| Experimental Evaluation | ✅ |
+| Research Paper | ✅ |
+
+---
+
+# 📸 Screenshots
+
+## Wazuh Dashboard
+
+<p align="center">
+<img src="images/wazuh-active-agent.png" width="850">
+</p>
+
+---
+
+## Zeek Telemetry
+
+<p align="center">
+<img src="images/working-zeek-logs.jpg" width="850">
+</p>
+
+---
+
+# 📚 Documentation
+
+- 📄 Research Paper
+- 📑 One-page Research Summary
+- 📝 Ethics Statement
+- 🏗 Architecture Diagram
+- 📖 Medium Blog
+- ✍️ Substack Blog
+
+---
+
+# 📈 Experimental Workflow
+
+1. Deploy reproducible SOC environment
+2. Generate controlled attack scenarios
+3. Collect host telemetry
+4. Collect network telemetry
+5. Perform cross-layer correlation
+6. Evaluate operational metrics
+7. Analyze architectural trade-offs
+
+---
+
+# 🎯 Intended Audience
+
+This repository is designed for:
+
+- Cybersecurity researchers
+- SOC engineers
+- Detection engineers
+- Graduate and undergraduate students
+- Reviewers evaluating reproducibility
+
+---
+
+# 📖 Related Project
+
+**Web Pentest Toolkit**
+
 https://github.com/Lanex69/vulnerability-scanner
 
 ---
 
-## Documentation and Reports
+# 📜 License
 
-- [Research Summary(PDF)](docs/Research-Summary.pdf)  
-- [Ethics Statement](ETHICS.md)  
-- [Architecture Diagram v2](images/architecture.png)  
-- Blog Series – Part 1: Building the Mini SOC  
-   [Medium Version](https://medium.com/@syedahsanahmed04/building-a-mini-soc-research-testbed-my-journey-into-security-telemetry-c49f94c58a65) | [Substack Version](https://zerodayahsan.substack.com/p/building-a-mini-soc-research-testbed)
-
+Released under the MIT License.
 
 ---
 
-## Research Insights
+## ⭐ Citation
 
-Preliminary findings indicate that correlating host and network telemetry reduces redundant alerts and improves SOC triage efficiency.  
-Future work includes integrating a lightweight ML-based alert scoring module and exploring automated severity assignment.
+If you use this repository in your research, please cite the accompanying paper.
 
----
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+```bibtex
+@misc{Ahmed2026,
+  author={Syed Ahsan Ahmed},
+  title={Evaluating Cross-Layer Host--Network Telemetry Correlation in a Reproducible SOC Testbed},
+  year={2026}
+}
+```
